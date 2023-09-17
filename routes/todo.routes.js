@@ -1,25 +1,17 @@
 const { Router } = require("express");
 
+const todoController = require("../controllers/todo.controller");
+
 const todoRouter = Router();
 
-todoRouter.get("/", (request, response) => {
-  response.send("Fetch all todos");
-});
+todoRouter.get("/", todoController.getAll);
 
-todoRouter.post("/", (request, response) => {
-  response.send("Creating todo");
-});
+todoRouter.post("/", todoController.create);
 
-todoRouter.get("/:id", (request, response) => {
-  response.send(`Fetch the todo with id: ${request.params.id}`);
-});
+todoRouter.get("/:id", todoController.getOneById);
 
-todoRouter.put("/:id", (request, response) => {
-  response.send(`Update the todo with id: ${request.params.id}`);
-});
+todoRouter.put("/:id", todoController.updateOneById);
 
-todoRouter.delete("/:id", (request, response) => {
-  response.send(`Delete the todo with id: ${request.params.id}`);
-});
+todoRouter.delete("/:id", todoController.deleteOneById);
 
 module.exports = todoRouter;
